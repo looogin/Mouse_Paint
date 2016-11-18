@@ -131,7 +131,7 @@ public class PaintPanel extends JPanel {
     }
 
     private void eraseDraw(int x, int y, Graphics2D g2) {
-        g2.setStroke(new BasicStroke(getWLine() + 5, BasicStroke.CAP_ROUND, BasicStroke.JOIN_BEVEL));
+        g2.setStroke(new BasicStroke(getWLine()*2+5, BasicStroke.CAP_ROUND, BasicStroke.JOIN_BEVEL));
         g2.setColor(Color.WHITE);
         g2.drawLine(lastX, lastY, x, y);
     }
