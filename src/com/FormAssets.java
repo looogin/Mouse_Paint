@@ -98,16 +98,16 @@ public class FormAssets extends JFrame {
                     p1.clear();
                     break;
                 case "pencil":
-                    p1.setTypeofdraw(e.getActionCommand());
+                    p1.setTypeofDraw(e.getActionCommand());
                     break;
                 case "erase":
-                    p1.setTypeofdraw(e.getActionCommand());
+                    p1.setTypeofDraw(e.getActionCommand());
                     break;
                 case "rect":
-                    p1.setTypeofdraw(e.getActionCommand());
+                    p1.setTypeofDraw(e.getActionCommand());
                     break;
                 case "oval":
-                    p1.setTypeofdraw(e.getActionCommand());
+                    p1.setTypeofDraw(e.getActionCommand());
                     break;
             }
 

@@ -1,5 +1,7 @@
 package com;
 
+import org.w3c.dom.css.Rect;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -8,6 +10,8 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+
+import static com.DrawTypes.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -24,7 +28,7 @@ public class PaintPanel extends JPanel {
     private Boolean noimage = false;
     private Boolean noimage2 = false;
     private float WLine;
-    private String typeofdraw = "pencil";
+    private String typeofdraw = PENCIL;
     private Color colordraw;
     private int x1;
     private int y1;
@@ -116,11 +120,11 @@ public class PaintPanel extends JPanel {
         WLine = wline;
     }
 
-    public String getTypeofdraw() {
+    public String getTypeofDraw() {
         return typeofdraw;
     }
 
-    public void setTypeofdraw(String typeofdraw) {
+    public void setTypeofDraw(String typeofdraw) {
         this.typeofdraw = typeofdraw;
     }
 
@@ -144,11 +148,11 @@ public class PaintPanel extends JPanel {
         g2d.setStroke(new BasicStroke(getWLine(), BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
         g2d.setColor(colordraw);
         if (noimage2) {
-            switch (getTypeofdraw()) {
-                case "rect":
+            switch (getTypeofDraw()) {
+                case RECT:
                     g2d.drawRect(ltX, ltY, rbX - ltX, rbY - ltY);
                     break;
-                case "oval":
+                case OVAL:
                     g2d.drawOval(ltX, ltY, rbX - ltX, rbY - ltY);
                     break;
             }
@@ -163,11 +167,11 @@ public class PaintPanel extends JPanel {
         x2 = x1;
         y2 = y1;
         g2d.setColor(colordraw);
-        switch (getTypeofdraw()) {
-            case "rect":
+        switch (getTypeofDraw()) {
+            case RECT:
                 g2d.drawRect(x1, y1, 0, 0);
                 break;
-            case "oval":
+            case OVAL:
                 g2d.drawOval(x1, y1, 0, 0);
                 break;
         }
@@ -186,11 +190,11 @@ public class PaintPanel extends JPanel {
         g2d = (Graphics2D) imag.getGraphics();
         g2d.setColor(colordraw);
         g2d.setStroke(new BasicStroke(getWLine(), BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
-        switch (getTypeofdraw()) {
-            case "rect":
+        switch (getTypeofDraw()) {
+            case RECT:
                 g2d.drawRect(ltX, ltY, rbX - ltX, rbY - ltY);
                 break;
-            case "oval":
+            case OVAL:
                 g2d.drawOval(ltX, ltY, rbX - ltX, rbY - ltY);
                 break;
         }
@@ -209,35 +213,36 @@ public class PaintPanel extends JPanel {
                 case 3:
                     colordraw = getColor2();
             }
-            if (getTypeofdraw().equals("rect") || getTypeofdraw().equals("oval")) startDrawShape(e);
+
+            if (getTypeofDraw().equals(RECT) || getTypeofDraw().equals(OVAL)) startDrawShape(e);
         }
 
         @Override
         public void mouseReleased(MouseEvent e) {
             super.mouseReleased(e);
-            if (getTypeofdraw().equals("rect") || getTypeofdraw().equals("oval")) endDrawShape();
+            if (getTypeofDraw().equals(RECT) || getTypeofDraw().equals(OVAL)) endDrawShape();
         }
 
         @Override
         public void mouseDragged(MouseEvent e) {
             super.mouseDragged(e);
             g2d = (Graphics2D) imag.getGraphics();
-            switch (getTypeofdraw()) {
-                case "pencil":
+            switch (getTypeofDraw()) {
+                case PENCIL:
                     paintPencil(e.getX(), e.getY(), g2d, colordraw);
                     setPosition(e.getX(), e.getY());
                     repaint();
                     break;
-                case "erase":
+                case ERASE:
                     eraseDraw(e.getX(), e.getY(), g2d);
                     setPosition(e.getX(), e.getY());
                     repaint();
                     break;
-                case "rect":
+                case RECT:
                     x2 = e.getX();
                     y2 = e.getY();
                     repaint();
-                case "oval":
+                case OVAL:
                     x2 = e.getX();
                     y2 = e.getY();
                     repaint();
