@@ -79,7 +79,7 @@ public class FormAssets extends JFrame {
                         jd.setTitle("Ошибка");
                         jd.setLocation(525, 425);
                         jd.setSize(50, 50);
-                        jd.add(new JLabel(" Файл ненайден"));
+                        jd.add(new JLabel(" Файл не найден"));
                     }
                     break;
                 case "Save As..":
