@@ -6,6 +6,8 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
 
+import static com.DrawTypes.PENCIL;
+
 
 /**
  * Created with IntelliJ IDEA.
@@ -97,7 +99,7 @@ public class FormAssets extends JFrame {
                 case "Clear":
                     p1.clear();
                     break;
-                case "pencil":
+                case PENCIL:
                     p1.setTypeofDraw(e.getActionCommand());
                     break;
                 case "erase":
