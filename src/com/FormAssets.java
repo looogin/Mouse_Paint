@@ -6,8 +6,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
 
-import static com.DrawTypes.PENCIL;
-import static com.DrawTypes.RECT;
+import static com.DrawTypes.*;
 
 
 /**
@@ -94,22 +93,22 @@ public class FormAssets extends JFrame {
                         p1.saveImage(file);
                     }
                     break;
-                case "Close":
+                case CLOSE:
                     System.exit(0);
                     break;
-                case "Clear":
+                case CLEAR:
                     p1.clear();
                     break;
                 case PENCIL:
                     p1.setTypeofDraw(e.getActionCommand());
                     break;
-                case "erase":
+                case ERASE:
                     p1.setTypeofDraw(e.getActionCommand());
                     break;
                 case RECT:
                     p1.setTypeofDraw(e.getActionCommand());
                     break;
-                case "oval":
+                case OVAL:
                     p1.setTypeofDraw(e.getActionCommand());
                     break;
             }

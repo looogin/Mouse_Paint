@@ -8,5 +8,8 @@ public interface DrawTypes {
     String RECT= "rect";
     String ERASE= "erase";
     String PENCIL= "pencil";
+    String CLEAR ="clear";
+    String CLOSE ="close";
+
 
 }
