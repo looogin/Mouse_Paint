@@ -60,7 +60,6 @@ public class FormAssets extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             paintPanel.setWline(Float.parseFloat(managementPanel.getCb().getSelectedItem().toString()));
-
             switch (e.getActionCommand()) {
                 case "Open":
                     FileDialog dialog = new FileDialog(ff, e.getActionCommand());
