@@ -7,6 +7,7 @@ import java.awt.event.*;
 import java.io.File;
 
 import static com.DrawTypes.PENCIL;
+import static com.DrawTypes.RECT;
 
 
 /**
@@ -105,7 +106,7 @@ public class FormAssets extends JFrame {
                 case "erase":
                     p1.setTypeofDraw(e.getActionCommand());
                     break;
-                case "rect":
+                case RECT:
                     p1.setTypeofDraw(e.getActionCommand());
                     break;
                 case "oval":
