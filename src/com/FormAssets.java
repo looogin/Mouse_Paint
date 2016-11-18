@@ -3,11 +3,13 @@ package com;
 import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.File;
 
 import static com.DrawTypes.*;
-
 
 /**
  * Created with IntelliJ IDEA.
@@ -15,22 +17,20 @@ import static com.DrawTypes.*;
  * Date: 02.10.13
  * Time: 11:14
  */
+
 public class FormAssets extends JFrame {
-    private ActionListener ac;
     private FileFilter ff;
     private File file = new File("");
-    private PaintPanel p1 = new PaintPanel();
-    private ColorPanel p2 = new ColorPanel();
-    private ManagementPanel p3 = new ManagementPanel();
-    private FileDialog fd;
-    private MouseAdapter ml;
+    private PaintPanel paintPanel = new PaintPanel();
+    private ColorPanel colorPanel = new ColorPanel();
+    private ManagementPanel managementPanel = new ManagementPanel();
 
 
     public FormAssets(String str) {
         super(str);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         Container contentPane = getContentPane();
-        ml = new MListener();
+        MouseAdapter ml = new MListener();
         ff = new FileFilter() {
             @Override
             public boolean accept(File f) {
@@ -42,74 +42,75 @@ public class FormAssets extends JFrame {
                 return "Image file " + ".png";
             }
         };
-        ac = new AListener();
+        ActionListener ac = new AListener();
         contentPane.setLayout(null);
-        p1.setBounds(0, 50, 430, 450);
-        p2.setBounds(430, 50, 70, 450);
-        p3.setBounds(0, 0, 500, 50);
-        contentPane.add(p1);
-        contentPane.add(p2);
-        contentPane.add(p3);
-        for (int i = 0; i < p3.getMenuLenght(); i++) p3.getMenuItemElement(i).addActionListener(ac);
-        for (int i = 0; i < p3.getButtonLenght(); i++) p3.getjButtons(i).addActionListener(ac);
-        for (int i = 0; i < p2.getCanvasleght(); i++) p2.getCanvasElement(i).addMouseListener(ml);
-        p3.getCb().addActionListener(ac);
+        paintPanel.setBounds(0, 50, 430, 450);
+        colorPanel.setBounds(430, 50, 70, 450);
+        managementPanel.setBounds(0, 0, 500, 50);
+        contentPane.add(paintPanel);
+        contentPane.add(colorPanel);
+        contentPane.add(managementPanel);
+        for (int i = 0; i < managementPanel.getMenuLenght(); i++) managementPanel.getMenuItemElement(i).addActionListener(ac);
+        for (int i = 0; i < managementPanel.getButtonLenght(); i++) managementPanel.getjButtons(i).addActionListener(ac);
+        for (int i = 0; i < colorPanel.getCanvasleght(); i++) colorPanel.getCanvasElement(i).addMouseListener(ml);
+        managementPanel.getCb().addActionListener(ac);
     }
 
     private class AListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            p1.setWline(Float.parseFloat(p3.getCb().getSelectedItem().toString()));
+            paintPanel.setWline(Float.parseFloat(managementPanel.getCb().getSelectedItem().toString()));
+
             switch (e.getActionCommand()) {
                 case "Open":
-                    fd = new FileDialog(ff, e.getActionCommand());
-                    if (fd.getRet() == JFileChooser.APPROVE_OPTION) {
-                        file = fd.getSelectedFile();
-                        p1.loadImage(file);
+                    FileDialog dialog = new FileDialog(ff, e.getActionCommand());
+                    if (dialog.getRet() == JFileChooser.APPROVE_OPTION) {
+                        file = dialog.getSelectedFile();
+                        paintPanel.loadImage(file);
                         setTitle("SimplePaint" + "  " + file);
                     }
                     break;
                 case "Save":
-                    if (file.exists()) p1.saveImage(file);
+                    if (file.exists()) paintPanel.saveImage(file);
                     else {
                         JDialog jd = new JDialog();
                         jd.setVisible(true);
                         jd.setModal(true);
-                        jd.setTitle("Îøèáêà");
+                        jd.setTitle("ÐžÑˆÐ¸Ð±ÐºÐ°");
                         jd.setLocation(525, 425);
                         jd.setSize(50, 50);
-                        jd.add(new JLabel(" Ôàéë íåíàéäåí"));
+                        jd.add(new JLabel(" Ð¤Ð°Ð¹Ð» Ð½ÐµÐ½Ð°Ð¹Ð´ÐµÐ½"));
                     }
                     break;
                 case "Save As..":
-                    fd = new FileDialog(ff, e.getActionCommand());
-                    if (fd.getRet() == JFileChooser.APPROVE_OPTION) {
-                        file = fd.getSelectedFile();
+                    dialog = new FileDialog(ff, e.getActionCommand());
+                    if (dialog.getRet() == JFileChooser.APPROVE_OPTION) {
+                        file = dialog.getSelectedFile();
                         String filePath = file.getPath();
                         if (!filePath.toLowerCase().endsWith(".png")) {
                             file = new File(filePath + ".png");
                         }
                         setTitle("SimplePaint" + "  " + ":" + file);
-                        p1.saveImage(file);
+                        paintPanel.saveImage(file);
                     }
                     break;
                 case CLOSE:
                     System.exit(0);
                     break;
                 case CLEAR:
-                    p1.clear();
+                    paintPanel.clear();
                     break;
                 case PENCIL:
-                    p1.setTypeofDraw(e.getActionCommand());
+                    paintPanel.setTypeofDraw(e.getActionCommand());
                     break;
                 case ERASE:
-                    p1.setTypeofDraw(e.getActionCommand());
+                    paintPanel.setTypeofDraw(e.getActionCommand());
                     break;
                 case RECT:
-                    p1.setTypeofDraw(e.getActionCommand());
+                    paintPanel.setTypeofDraw(e.getActionCommand());
                     break;
                 case OVAL:
-                    p1.setTypeofDraw(e.getActionCommand());
+                    paintPanel.setTypeofDraw(e.getActionCommand());
                     break;
             }
 
@@ -120,13 +121,13 @@ public class FormAssets extends JFrame {
     private class MListener extends MouseAdapter {
         @Override
         public void mousePressed(MouseEvent e) {
-            p2.setMbutton(e.getButton());
+            colorPanel.setMbutton(e.getButton());
         }
 
         @Override
         public void mouseReleased(MouseEvent e) {
-            p1.setColor1(p2.getColorbt1());
-            p1.setColor2(p2.getColorbt2());
+            paintPanel.setColor1(colorPanel.getColorbt1());
+            paintPanel.setColor2(colorPanel.getColorbt2());
 
         }
     }
