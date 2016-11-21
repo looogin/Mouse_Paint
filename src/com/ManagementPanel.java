@@ -2,7 +2,7 @@ package com;
 
 import javax.swing.*;
 
-import static com.DrawTypes.*;
+import static com.Constants.*;
 
 @SuppressWarnings("unchecked")
 public class ManagementPanel extends JPanel {

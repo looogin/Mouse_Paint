@@ -3,7 +3,7 @@ package com;
 /**
  * Created by Alex on 18.11.2016.
  */
-public interface DrawTypes {
+public interface Constants {
     String OVAL = "oval";
     String RECT = "rect";
     String ERASE = "erase";

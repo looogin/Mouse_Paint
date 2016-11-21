@@ -9,7 +9,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-import static com.DrawTypes.*;
+import static com.Constants.*;
 
 /**
  * Created with IntelliJ IDEA.
