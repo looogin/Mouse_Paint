@@ -2,12 +2,14 @@ package com;
 
 import javax.swing.*;
 
+import static com.DrawTypes.*;
+
 @SuppressWarnings("unchecked")
 public class ManagementPanel extends JPanel {
     private String[] path = {"/icon/pen.png", "/icon/erase.png", "/icon/rect.png", "/icon/oval.png"};
     private String[] menuname = {"Open", "New", "New...", "Save", "Save As..", "Close", "Clear"};
     private String[] item = {"1", "2", "4", "6", "8", "10", "12", "14", "18"};
-    private String[] actioncommand = {"pencil", "erase", "rect", "oval"};
+    private String[] actioncommand = {PENCIL, ERASE, RECT, OVAL};
     private JButton[] jButtons = new JButton[actioncommand.length];
     private JMenuItem[] menuItem = new JMenuItem[menuname.length];
     private JComboBox cb;

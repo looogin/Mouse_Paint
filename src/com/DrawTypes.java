@@ -9,7 +9,7 @@ public interface DrawTypes {
     String ERASE = "erase";
     String PENCIL = "pencil";
     String CLEAR = "clear";
-    String CLOSE = "close";
+    String CLOSE = "Close";
 
 
 }
