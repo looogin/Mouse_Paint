@@ -12,7 +12,8 @@ public class ManagementPanel extends JPanel {
     private String[] actioncommand = {PENCIL, ERASE, RECT, OVAL};
     private JButton[] jButtons = new JButton[actioncommand.length];
     private JMenuItem[] menuItem = new JMenuItem[menuname.length];
-    private JComboBox cb;
+    private JComboBox comboBox;
+    private  int sizeofbuttons =24;
 
     public ManagementPanel() {
         super();
@@ -40,7 +41,6 @@ public class ManagementPanel extends JPanel {
     }
 
     private void setToolBar() {
-        int h = 24;
         JToolBar toolBar = new JToolBar();
         toolBar.setLayout(null);
         toolBar.setBounds(1, 25, 500, 25);
@@ -49,11 +49,11 @@ public class ManagementPanel extends JPanel {
             jButtons[i] = new JButton(new ImageIcon(getClass().getResource(path[i])));
             jButtons[i].setActionCommand(actioncommand[i]);
             toolBar.add(jButtons[i]);
-            jButtons[i].setBounds(h * i, 0, h, 24);
+            jButtons[i].setBounds(sizeofbuttons * i, 0, sizeofbuttons, sizeofbuttons);
         }
-        cb = new JComboBox(item);
-        cb.setBounds(h * jButtons.length, 0, h * 2, 23);
-        toolBar.add(cb);
+        comboBox = new JComboBox(item);
+        comboBox.setBounds(sizeofbuttons * jButtons.length, 0, sizeofbuttons * 2, sizeofbuttons-1);
+        toolBar.add(comboBox);
         add(toolBar);
     }
 
@@ -74,8 +74,8 @@ public class ManagementPanel extends JPanel {
         return menuItem.length;
     }
 
-    public JComboBox getCb() {
-        return cb;
+    public JComboBox getComboBox() {
+        return comboBox;
     }
 
 }

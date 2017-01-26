@@ -53,13 +53,13 @@ public class FormAssets extends JFrame {
         for (int i = 0; i < managementPanel.getMenuLenght(); i++) managementPanel.getMenuItemElement(i).addActionListener(ac);
         for (int i = 0; i < managementPanel.getButtonLenght(); i++) managementPanel.getjButtons(i).addActionListener(ac);
         for (int i = 0; i < colorPanel.getCanvasleght(); i++) colorPanel.getCanvasElement(i).addMouseListener(ml);
-        managementPanel.getCb().addActionListener(ac);
+        managementPanel.getComboBox().addActionListener(ac);
     }
 
     private class AListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            paintPanel.setWline(Float.parseFloat(managementPanel.getCb().getSelectedItem().toString()));
+            paintPanel.setWline(Float.parseFloat(managementPanel.getComboBox().getSelectedItem().toString()));
             switch (e.getActionCommand()) {
                 case "Open":
                     FileDialog dialog = new FileDialog(ff, e.getActionCommand());
