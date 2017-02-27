@@ -15,11 +15,13 @@ public class ManagementPanel extends JPanel {
     private JComboBox comboBox;
     private  int sizeofbuttons =24;
 
+
     public ManagementPanel() {
         super();
         setLayout(null);
         setMenu();
         setToolBar();
+
     }
 
     private void setMenu() {
