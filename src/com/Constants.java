@@ -8,7 +8,7 @@ public interface Constants {
     String RECT = "rect";
     String ERASE = "erase";
     String PENCIL = "pencil";
-    String CLEAR = "clear";
+    String CLEAR = "Clear";
     String CLOSE = "Close";
 
 

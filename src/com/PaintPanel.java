@@ -147,12 +147,8 @@ public class PaintPanel extends JPanel {
         g2d.setColor(colordraw);
         if (noimage2) {
             switch (getTypeofDraw()) {
-                case RECT:
-                    g2d.drawRect(ltX, ltY, rbX - ltX, rbY - ltY);
-                    break;
-                case OVAL:
-                    g2d.drawOval(ltX, ltY, rbX - ltX, rbY - ltY);
-                    break;
+                case RECT -> g2d.drawRect(ltX, ltY, rbX - ltX, rbY - ltY);
+                case OVAL -> g2d.drawOval(ltX, ltY, rbX - ltX, rbY - ltY);
             }
         }
 

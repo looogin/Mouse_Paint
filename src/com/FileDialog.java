@@ -5,7 +5,7 @@ import javax.swing.filechooser.FileFilter;
 
 
 public class FileDialog extends JFileChooser {
-    private int ret;
+    private final int ret;
 
     public FileDialog(FileFilter fileFilter, String name) {
         super();

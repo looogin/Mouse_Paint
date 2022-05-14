@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
+import java.util.Objects;
 
 import static com.Constants.*;
 
@@ -19,11 +20,11 @@ import static com.Constants.*;
  */
 
 public class FormAssets extends JFrame {
-    private FileFilter ff;
+    private final FileFilter ff;
     private File file = new File("");
-    private PaintPanel paintPanel = new PaintPanel();
-    private ColorPanel colorPanel = new ColorPanel();
-    private ManagementPanel managementPanel = new ManagementPanel();
+    private final PaintPanel paintPanel = new PaintPanel();
+    private final ColorPanel colorPanel = new ColorPanel();
+    private final ManagementPanel managementPanel = new ManagementPanel();
 
 
     public FormAssets(String str) {
@@ -59,7 +60,7 @@ public class FormAssets extends JFrame {
     private class AListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            paintPanel.setWline(Float.parseFloat(managementPanel.getComboBox().getSelectedItem().toString()));
+            paintPanel.setWline(Float.parseFloat(Objects.requireNonNull(managementPanel.getComboBox().getSelectedItem()).toString()));
             switch (e.getActionCommand()) {
                 case "Open":
                     FileDialog dialog = new FileDialog(ff, e.getActionCommand());
@@ -75,7 +76,7 @@ public class FormAssets extends JFrame {
                         JDialog jd = new JDialog();
                         jd.setVisible(true);
                         jd.setModal(true);
-                        jd.setTitle("Ошибка");
+                        jd.setTitle("Ощибка");
                         jd.setLocation(525, 425);
                         jd.setSize(50, 50);
                         jd.add(new JLabel(" Файл не найден"));
@@ -100,14 +101,8 @@ public class FormAssets extends JFrame {
                     paintPanel.clear();
                     break;
                 case PENCIL:
-                    paintPanel.setTypeofDraw(e.getActionCommand());
-                    break;
                 case ERASE:
-                    paintPanel.setTypeofDraw(e.getActionCommand());
-                    break;
                 case RECT:
-                    paintPanel.setTypeofDraw(e.getActionCommand());
-                    break;
                 case OVAL:
                     paintPanel.setTypeofDraw(e.getActionCommand());
                     break;

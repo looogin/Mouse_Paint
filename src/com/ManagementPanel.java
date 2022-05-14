@@ -2,18 +2,19 @@ package com;
 
 import javax.swing.*;
 
+import java.util.Objects;
+
 import static com.Constants.*;
 
 @SuppressWarnings("unchecked")
 public class ManagementPanel extends JPanel {
-    private String[] path = {"/icon/pen.png", "/icon/erase.png", "/icon/rect.png", "/icon/oval.png"};
-    private String[] menuname = {"Open", "New", "New...", "Save", "Save As..", "Close", "Clear"};
-    private String[] item = {"1", "2", "4", "6", "8", "10", "12", "14", "18"};
-    private String[] actioncommand = {PENCIL, ERASE, RECT, OVAL};
-    private JButton[] jButtons = new JButton[actioncommand.length];
-    private JMenuItem[] menuItem = new JMenuItem[menuname.length];
+    private final String[] path = {"/icon/pen.png", "/icon/erase.png", "/icon/rect.png", "/icon/oval.png"};
+    private final String[] menuName = {"Open", "New", "New...", "Save", "Save As..", "Close", "Clear"};
+    private final String[] item = {"1", "2", "4", "6", "8", "10", "12", "14", "18"};
+    private final String[] actionCommand = {PENCIL, ERASE, RECT, OVAL};
+    private final JButton[] jButtons = new JButton[actionCommand.length];
+    private final JMenuItem[] menuItem = new JMenuItem[menuName.length];
     private JComboBox comboBox;
-    private  int sizeofbuttons =24;
 
 
     public ManagementPanel() {
@@ -29,7 +30,7 @@ public class ManagementPanel extends JPanel {
         JMenu menu = new JMenu("File");
         JMenu menu2 = new JMenu("Edit");
         for (int i = 0; i < menuItem.length; i++) {
-            menuItem[i] = new JMenuItem(menuname[i]);
+            menuItem[i] = new JMenuItem(menuName[i]);
             menu.add(menuItem[i]);
             if (i == 0) menu.add(new JSeparator());
             if (i == 2) menu.add(new JSeparator());
@@ -47,14 +48,15 @@ public class ManagementPanel extends JPanel {
         toolBar.setLayout(null);
         toolBar.setBounds(1, 25, 500, 25);
         toolBar.setFloatable(false);
+        int sizeofButtons = 24;
         for (int i = 0; i < jButtons.length; i++) {
-            jButtons[i] = new JButton(new ImageIcon(getClass().getResource(path[i])));
-            jButtons[i].setActionCommand(actioncommand[i]);
+            jButtons[i] = new JButton(new ImageIcon(Objects.requireNonNull(getClass().getResource(path[i]))));
+            jButtons[i].setActionCommand(actionCommand[i]);
             toolBar.add(jButtons[i]);
-            jButtons[i].setBounds(sizeofbuttons * i, 0, sizeofbuttons, sizeofbuttons);
+            jButtons[i].setBounds(sizeofButtons * i, 0, sizeofButtons, sizeofButtons);
         }
         comboBox = new JComboBox(item);
-        comboBox.setBounds(sizeofbuttons * jButtons.length, 0, sizeofbuttons * 2, sizeofbuttons-1);
+        comboBox.setBounds(sizeofButtons * jButtons.length, 0, sizeofButtons * 2, sizeofButtons -1);
         toolBar.add(comboBox);
         add(toolBar);
     }
