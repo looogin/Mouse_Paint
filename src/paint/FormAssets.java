@@ -1,4 +1,4 @@
-package com;
+package paint;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
@@ -10,7 +10,7 @@ import java.awt.event.MouseEvent;
 import java.io.File;
 import java.util.Objects;
 
-import static com.Constants.*;
+import static paint.Constants.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -63,7 +63,7 @@ public class FormAssets extends JFrame {
             paintPanel.setWline(Float.parseFloat(Objects.requireNonNull(managementPanel.getComboBox().getSelectedItem()).toString()));
             switch (e.getActionCommand()) {
                 case "Open":
-                    FileDialog dialog = new FileDialog(ff, e.getActionCommand());
+                    paint.FileDialog dialog = new paint.FileDialog(ff, e.getActionCommand());
                     if (dialog.getRet() == JFileChooser.APPROVE_OPTION) {
                         file = dialog.getSelectedFile();
                         paintPanel.loadImage(file);

@@ -1,17 +1,15 @@
-package com;
+package paint;
 
 import javax.swing.*;
 
 import java.util.Objects;
-
-import static com.Constants.*;
 
 @SuppressWarnings("unchecked")
 public class ManagementPanel extends JPanel {
     private final String[] path = {"/icon/pen.png", "/icon/erase.png", "/icon/rect.png", "/icon/oval.png"};
     private final String[] menuName = {"Open", "New", "New...", "Save", "Save As..", "Close", "Clear"};
     private final String[] item = {"1", "2", "4", "6", "8", "10", "12", "14", "18"};
-    private final String[] actionCommand = {PENCIL, ERASE, RECT, OVAL};
+    private final String[] actionCommand = {Constants.PENCIL, Constants.ERASE, Constants.RECT, Constants.OVAL};
     private final JButton[] jButtons = new JButton[actionCommand.length];
     private final JMenuItem[] menuItem = new JMenuItem[menuName.length];
     private JComboBox comboBox;

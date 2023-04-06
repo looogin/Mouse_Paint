@@ -1,4 +1,4 @@
-package com;
+package paint;
 
 import java.awt.*;
 import java.io.IOException;

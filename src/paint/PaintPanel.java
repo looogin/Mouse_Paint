@@ -1,4 +1,4 @@
-package com;
+package paint;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -9,7 +9,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-import static com.Constants.*;
+import static paint.Constants.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -22,7 +22,8 @@ public class PaintPanel extends JPanel {
     private int lastY;
     private Color color1 = Color.BLACK;
     private Color color2 = Color.WHITE;
-    private BufferedImage imag, imag2;
+    private BufferedImage imag;
+    private final BufferedImage imag2;
     private Boolean noimage = false;
     private Boolean noimage2 = false;
     private float WLine;

@@ -1,4 +1,4 @@
-package com;
+package paint;
 
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
@@ -15,8 +15,8 @@ import java.awt.event.FocusListener;
  */
 @SuppressWarnings("unchecked")
 public class ColorPanel extends Panel {
-    private int[] colorsnambers = {0x0, 0xFF0000, 0x0000FF, 0x008000, 0xFFFF00, 0xFF00FF, 0x8B4513, 0xFFA500, 0x9932CC, 0xBDB76B};
-    private Canvas[] arrcanvas = new Canvas[colorsnambers.length];
+    private final int[] colorsnambers = {0x0, 0xFF0000, 0x0000FF, 0x008000, 0xFFFF00, 0xFF00FF, 0x8B4513, 0xFFA500, 0x9932CC, 0xBDB76B};
+    private final Canvas[] arrcanvas = new Canvas[colorsnambers.length];
     private Button jb1, jb2;
     private int mbutton;
 
@@ -91,11 +91,8 @@ public class ColorPanel extends Panel {
             for (Canvas canvas : arrcanvas) {
                 if (e.getSource() == canvas) {
                     switch (getMbutton()) {
-                        case 1:
-                            jb1.setBackground(canvas.getBackground());
-                            break;
-                        case 3:
-                            jb2.setBackground(canvas.getBackground());
+                        case 1 -> jb1.setBackground(canvas.getBackground());
+                        case 3 -> jb2.setBackground(canvas.getBackground());
                     }
 
                 }
