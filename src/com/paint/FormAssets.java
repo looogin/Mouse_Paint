@@ -53,6 +53,7 @@ public class FormAssets extends JFrame {
         for (int i = 0; i < managementPanel.getButtonLength(); i++) managementPanel.getJButton(i).addActionListener(ac);
         for (int i = 0; i < colorPanel.getCanvaslength(); i++) colorPanel.getCanvasElement(i).addMouseListener(ml);
         managementPanel.getComboBox().addActionListener(ac);
+        managementPanel.getJButtonsByName(PENCIL).setSelected(true);
     }
 
     private class AListener implements ActionListener {
