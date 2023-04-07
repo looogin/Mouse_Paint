@@ -1,4 +1,4 @@
-package paint;
+package com.paint;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileFilter;

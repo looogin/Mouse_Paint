@@ -1,4 +1,4 @@
-package paint;
+package com.paint;
 
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
@@ -13,7 +13,7 @@ import java.awt.event.FocusListener;
  * Date: 02.10.13
  * Time: 14:14
  */
-@SuppressWarnings("unchecked")
+
 public class ColorPanel extends Panel {
     private final int[] colorsNumbers = {0x0,0xFFFFFF, 0xFF0000, 0x0000FF, 0x008000, 0xFFFF00, 0xFF00FF, 0x8B4513, 0xFFA500, 0x9932CC, 0xBDB76B};
     private final Canvas[] arrcanvas = new Canvas[colorsNumbers.length];
@@ -21,7 +21,7 @@ public class ColorPanel extends Panel {
     private int mbutton;
 
 
-    @SuppressWarnings("unchecked")
+
     public ColorPanel() {
         super();
         FocusListener fl = new FListener();
@@ -69,7 +69,7 @@ public class ColorPanel extends Panel {
         this.mbutton = mbutton;
     }
 
-    public int getCanvasleght() {
+    public int getCanvaslength() {
         return arrcanvas.length;
     }
 

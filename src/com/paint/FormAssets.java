@@ -1,4 +1,4 @@
-package paint;
+package com.paint;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
@@ -9,8 +9,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.util.Objects;
-
-import static paint.Constants.*;
+import static com.paint.Constants.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -20,7 +19,7 @@ import static paint.Constants.*;
  */
 
 public class FormAssets extends JFrame {
-    private final FileFilter ff;
+    private final FileFilter fileFilter;
     private File file = new File("");
     private final PaintPanel paintPanel = new PaintPanel();
     private final ColorPanel colorPanel = new ColorPanel();
@@ -32,12 +31,11 @@ public class FormAssets extends JFrame {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         Container contentPane = getContentPane();
         MouseAdapter ml = new MListener();
-        ff = new FileFilter() {
+        fileFilter = new FileFilter() {
             @Override
             public boolean accept(File f) {
                 return f.getName().toLowerCase().endsWith(".png") || f.isDirectory();
             }
-
             @Override
             public String getDescription() {
                 return "Image file " + ".png";
@@ -51,39 +49,40 @@ public class FormAssets extends JFrame {
         contentPane.add(paintPanel);
         contentPane.add(colorPanel);
         contentPane.add(managementPanel);
-        for (int i = 0; i < managementPanel.getMenuLenght(); i++) managementPanel.getMenuItemElement(i).addActionListener(ac);
-        for (int i = 0; i < managementPanel.getButtonLenght(); i++) managementPanel.getjButtons(i).addActionListener(ac);
-        for (int i = 0; i < colorPanel.getCanvasleght(); i++) colorPanel.getCanvasElement(i).addMouseListener(ml);
+        for (int i = 0; i < managementPanel.getMenuLength(); i++) managementPanel.getMenuItemElement(i).addActionListener(ac);
+        for (int i = 0; i < managementPanel.getButtonLength(); i++) managementPanel.getjButtons(i).addActionListener(ac);
+        for (int i = 0; i < colorPanel.getCanvaslength(); i++) colorPanel.getCanvasElement(i).addMouseListener(ml);
         managementPanel.getComboBox().addActionListener(ac);
     }
 
     private class AListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
+            FileDialog dialog;
             paintPanel.setWline(Integer.parseInt(Objects.requireNonNull(managementPanel.getComboBox().getSelectedItem()).toString()));
             switch (e.getActionCommand()) {
-                case "Open":
-                    paint.FileDialog dialog = new paint.FileDialog(ff, e.getActionCommand());
+                case "Open" -> {
+                    dialog = new FileDialog(fileFilter, e.getActionCommand());
                     if (dialog.getRet() == JFileChooser.APPROVE_OPTION) {
                         file = dialog.getSelectedFile();
                         paintPanel.loadImage(file);
                         setTitle("SimplePaint" + "  " + file);
                     }
-                    break;
-                case "Save":
+                }
+                case "Save" -> {
                     if (file.exists()) paintPanel.saveImage(file);
                     else {
                         JDialog jd = new JDialog();
                         jd.setVisible(true);
                         jd.setModal(true);
-                        jd.setTitle("Ощибка");
+                        jd.setTitle("Ошибка");
                         jd.setLocation(525, 425);
                         jd.setSize(50, 50);
                         jd.add(new JLabel(" Файл не найден"));
                     }
-                    break;
-                case "Save As..":
-                    dialog = new FileDialog(ff, e.getActionCommand());
+                }
+                case "Save As.." -> {
+                    dialog = new FileDialog(fileFilter, e.getActionCommand());
                     if (dialog.getRet() == JFileChooser.APPROVE_OPTION) {
                         file = dialog.getSelectedFile();
                         String filePath = file.getPath();
@@ -93,19 +92,10 @@ public class FormAssets extends JFrame {
                         setTitle("SimplePaint" + "  " + ":" + file);
                         paintPanel.saveImage(file);
                     }
-                    break;
-                case CLOSE:
-                    System.exit(0);
-                    break;
-                case CLEAR:
-                    paintPanel.clear();
-                    break;
-                case PENCIL:
-                case ERASE:
-                case RECT:
-                case OVAL:
-                    paintPanel.setTypeofDraw(e.getActionCommand());
-                    break;
+                }
+                case CLOSE -> System.exit(0);
+                case CLEAR -> paintPanel.clear();
+                case PENCIL, ERASE, RECT, OVAL -> paintPanel.setTypeofDraw(e.getActionCommand());
             }
 
         }

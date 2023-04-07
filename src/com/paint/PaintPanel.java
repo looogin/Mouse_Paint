@@ -1,4 +1,4 @@
-package paint;
+package com.paint;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -8,8 +8,6 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-
-import static paint.Constants.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -27,7 +25,7 @@ public class PaintPanel extends JPanel {
     private Boolean noimage = false;
     private Boolean noimage2 = false;
     private int WLine;
-    private String typeofdraw = PENCIL;
+    private String typeofdraw = Constants.PENCIL;
     private Color colordraw;
     private int x1;
     private int y1;
@@ -155,13 +153,13 @@ public class PaintPanel extends JPanel {
     private void drawShape(int ltX, int ltY, int rbX, int rbY) {
         g2d.setColor(getColor2());
         switch (getTypeofDraw()) {
-            case RECT -> g2d.fillRect(ltX+1, ltY+1, rbX-1, rbY-1);
-            case OVAL -> g2d.fillOval(ltX, ltY, rbX, rbY);
+            case Constants.RECT -> g2d.fillRect(ltX+1, ltY+1, rbX-1, rbY-1);
+            case Constants.OVAL -> g2d.fillOval(ltX, ltY, rbX, rbY);
         }
         g2d.setColor(getColor1());
         switch (getTypeofDraw()) {
-            case RECT -> g2d.drawRect(ltX, ltY, rbX, rbY);
-            case OVAL -> g2d.drawOval(ltX, ltY, rbX, rbY);
+            case Constants.RECT -> g2d.drawRect(ltX, ltY, rbX, rbY);
+            case Constants.OVAL -> g2d.drawOval(ltX, ltY, rbX, rbY);
         }
     }
 
@@ -202,13 +200,13 @@ public class PaintPanel extends JPanel {
                 case 3 -> colordraw = getColor2();
             }
 
-            if (getTypeofDraw().equals(RECT) || getTypeofDraw().equals(OVAL)) startDrawShape(e);
+            if (getTypeofDraw().equals(Constants.RECT) || getTypeofDraw().equals(Constants.OVAL)) startDrawShape(e);
         }
 
         @Override
         public void mouseReleased(MouseEvent e) {
             super.mouseReleased(e);
-            if (getTypeofDraw().equals(RECT) || getTypeofDraw().equals(OVAL)) endDrawShape();
+            if (getTypeofDraw().equals(Constants.RECT) || getTypeofDraw().equals(Constants.OVAL)) endDrawShape();
         }
 
         @Override
@@ -216,21 +214,21 @@ public class PaintPanel extends JPanel {
             super.mouseDragged(e);
             g2d = (Graphics2D) imag.getGraphics();
             switch (getTypeofDraw()) {
-                case PENCIL:
+                case Constants.PENCIL:
                     paintPencil(e.getX(), e.getY(), g2d, colordraw);
                     setPosition(e.getX(), e.getY());
                     repaint();
                     break;
-                case ERASE:
+                case Constants.ERASE:
                     eraseDraw(e.getX(), e.getY(), g2d);
                     setPosition(e.getX(), e.getY());
                     repaint();
                     break;
-                case RECT:
+                case Constants.RECT:
                     x2 = e.getX();
                     y2 = e.getY();
                     repaint();
-                case OVAL:
+                case Constants.OVAL:
                     x2 = e.getX();
                     y2 = e.getY();
                     repaint();

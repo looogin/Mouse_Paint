@@ -1,10 +1,10 @@
-package paint;
+package com.paint;
 
 import javax.swing.*;
 
 import java.util.Objects;
 
-@SuppressWarnings("unchecked")
+
 public class ManagementPanel extends JPanel {
     private final String[] path = {"/icon/pen.png", "/icon/erase.png", "/icon/rect.png", "/icon/oval.png"};
     private final String[] menuName = {"Open", "New", "New...", "Save", "Save As..", "Close", "Clear"};
@@ -12,7 +12,7 @@ public class ManagementPanel extends JPanel {
     private final String[] actionCommand = {Constants.PENCIL, Constants.ERASE, Constants.RECT, Constants.OVAL};
     private final JButton[] jButtons = new JButton[actionCommand.length];
     private final JMenuItem[] menuItem = new JMenuItem[menuName.length];
-    private JComboBox comboBox;
+    private JComboBox<String>comboBox;
 
 
     public ManagementPanel() {
@@ -53,7 +53,7 @@ public class ManagementPanel extends JPanel {
             toolBar.add(jButtons[i]);
             jButtons[i].setBounds(sizeofButtons * i, 0, sizeofButtons, sizeofButtons);
         }
-        comboBox = new JComboBox(item);
+        comboBox = new JComboBox<>(item);
         comboBox.setBounds(sizeofButtons * jButtons.length, 0, sizeofButtons * 2, sizeofButtons -1);
         toolBar.add(comboBox);
         add(toolBar);
@@ -64,7 +64,7 @@ public class ManagementPanel extends JPanel {
         return jButtons[i];
     }
 
-    public int getButtonLenght() {
+    public int getButtonLength() {
         return jButtons.length;
     }
 
@@ -72,11 +72,11 @@ public class ManagementPanel extends JPanel {
         return menuItem[i];
     }
 
-    public int getMenuLenght() {
+    public int getMenuLength() {
         return menuItem.length;
     }
 
-    public JComboBox getComboBox() {
+    public JComboBox<String> getComboBox() {
         return comboBox;
     }
 

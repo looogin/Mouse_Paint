@@ -1,4 +1,4 @@
-package paint;
+package com.paint;
 
 /**
  * Created by Alex on 18.11.2016.
