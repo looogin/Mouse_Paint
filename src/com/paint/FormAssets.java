@@ -50,7 +50,7 @@ public class FormAssets extends JFrame {
         contentPane.add(colorPanel);
         contentPane.add(managementPanel);
         for (int i = 0; i < managementPanel.getMenuLength(); i++) managementPanel.getMenuItemElement(i).addActionListener(ac);
-        for (int i = 0; i < managementPanel.getButtonLength(); i++) managementPanel.getjButtons(i).addActionListener(ac);
+        for (int i = 0; i < managementPanel.getButtonLength(); i++) managementPanel.getJButton(i).addActionListener(ac);
         for (int i = 0; i < colorPanel.getCanvaslength(); i++) colorPanel.getCanvasElement(i).addMouseListener(ml);
         managementPanel.getComboBox().addActionListener(ac);
     }
@@ -95,7 +95,10 @@ public class FormAssets extends JFrame {
                 }
                 case CLOSE -> System.exit(0);
                 case CLEAR -> paintPanel.clear();
-                case PENCIL, ERASE, RECT, OVAL -> paintPanel.setTypeofDraw(e.getActionCommand());
+                case PENCIL, ERASE, RECT, OVAL -> {
+                    paintPanel.setTypeofDraw(e.getActionCommand());
+                    managementPanel.getJButtonsByName(e.getActionCommand()).setSelected(true);
+                }
             }
 
         }

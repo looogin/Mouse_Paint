@@ -60,8 +60,16 @@ public class ManagementPanel extends JPanel {
     }
 
 
-    public JButton getjButtons(int i) {
+    public JButton getJButton(int i) {
         return jButtons[i];
+    }
+    public JButton getJButtonsByName(String  name) {
+        for(JButton but : jButtons){
+            if(but.getActionCommand().equals(name)){
+                return  but;
+            }
+        }
+        return null;
     }
 
     public int getButtonLength() {
