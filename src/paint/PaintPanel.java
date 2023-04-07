@@ -26,7 +26,7 @@ public class PaintPanel extends JPanel {
     private final BufferedImage imag2;
     private Boolean noimage = false;
     private Boolean noimage2 = false;
-    private float WLine;
+    private int WLine;
     private String typeofdraw = PENCIL;
     private Color colordraw;
     private int x1;
@@ -111,11 +111,11 @@ public class PaintPanel extends JPanel {
         color2 = col;
     }
 
-    public float getWLine() {
+    public int getWLine() {
         return WLine;
     }
 
-    public void setWline(float wline) {
+    public void setWline(int wline) {
         WLine = wline;
     }
 
@@ -145,14 +145,24 @@ public class PaintPanel extends JPanel {
         int rbX = Math.max(x1, x2);
         int rbY = Math.max(y1, y2);
         g2d.setStroke(new BasicStroke(getWLine(), BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
-        g2d.setColor(colordraw);
+
         if (noimage2) {
-            switch (getTypeofDraw()) {
-                case RECT -> g2d.drawRect(ltX, ltY, rbX - ltX, rbY - ltY);
-                case OVAL -> g2d.drawOval(ltX, ltY, rbX - ltX, rbY - ltY);
-            }
+            drawShape(ltX, ltY, rbX - ltX, rbY - ltY);
         }
 
+    }
+
+    private void drawShape(int ltX, int ltY, int rbX, int rbY) {
+        g2d.setColor(getColor2());
+        switch (getTypeofDraw()) {
+            case RECT -> g2d.fillRect(ltX+1, ltY+1, rbX-1, rbY-1);
+            case OVAL -> g2d.fillOval(ltX, ltY, rbX, rbY);
+        }
+        g2d.setColor(getColor1());
+        switch (getTypeofDraw()) {
+            case RECT -> g2d.drawRect(ltX, ltY, rbX, rbY);
+            case OVAL -> g2d.drawOval(ltX, ltY, rbX, rbY);
+        }
     }
 
     private void startDrawShape(MouseEvent e) {
@@ -161,15 +171,8 @@ public class PaintPanel extends JPanel {
         y1 = e.getY();
         x2 = x1;
         y2 = y1;
-        g2d.setColor(colordraw);
-        switch (getTypeofDraw()) {
-            case RECT:
-                g2d.drawRect(x1, y1, 0, 0);
-                break;
-            case OVAL:
-                g2d.drawOval(x1, y1, 0, 0);
-                break;
-        }
+
+        drawShape(x1, y1, 0, 0);
         repaint();
     }
 
@@ -183,16 +186,9 @@ public class PaintPanel extends JPanel {
         y2 = -100;
         y1 = -100;
         g2d = (Graphics2D) imag.getGraphics();
-        g2d.setColor(colordraw);
+
         g2d.setStroke(new BasicStroke(getWLine(), BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
-        switch (getTypeofDraw()) {
-            case RECT:
-                g2d.drawRect(ltX, ltY, rbX - ltX, rbY - ltY);
-                break;
-            case OVAL:
-                g2d.drawOval(ltX, ltY, rbX - ltX, rbY - ltY);
-                break;
-        }
+        drawShape(ltX, ltY, rbX - ltX, rbY - ltY);
         repaint();
     }
 
@@ -202,11 +198,8 @@ public class PaintPanel extends JPanel {
             super.mousePressed(e);
             setPosition(e.getX(), e.getY());
             switch (e.getButton()) {
-                case 1:
-                    colordraw = getColor1();
-                    break;
-                case 3:
-                    colordraw = getColor2();
+                case 1 -> colordraw = getColor1();
+                case 3 -> colordraw = getColor2();
             }
 
             if (getTypeofDraw().equals(RECT) || getTypeofDraw().equals(OVAL)) startDrawShape(e);

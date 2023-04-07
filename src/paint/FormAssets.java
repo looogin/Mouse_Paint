@@ -60,7 +60,7 @@ public class FormAssets extends JFrame {
     private class AListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            paintPanel.setWline(Float.parseFloat(Objects.requireNonNull(managementPanel.getComboBox().getSelectedItem()).toString()));
+            paintPanel.setWline(Integer.parseInt(Objects.requireNonNull(managementPanel.getComboBox().getSelectedItem()).toString()));
             switch (e.getActionCommand()) {
                 case "Open":
                     paint.FileDialog dialog = new paint.FileDialog(ff, e.getActionCommand());

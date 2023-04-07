@@ -15,8 +15,8 @@ import java.awt.event.FocusListener;
  */
 @SuppressWarnings("unchecked")
 public class ColorPanel extends Panel {
-    private final int[] colorsnambers = {0x0, 0xFF0000, 0x0000FF, 0x008000, 0xFFFF00, 0xFF00FF, 0x8B4513, 0xFFA500, 0x9932CC, 0xBDB76B};
-    private final Canvas[] arrcanvas = new Canvas[colorsnambers.length];
+    private final int[] colorsNumbers = {0x0,0xFFFFFF, 0xFF0000, 0x0000FF, 0x008000, 0xFFFF00, 0xFF00FF, 0x8B4513, 0xFFA500, 0x9932CC, 0xBDB76B};
+    private final Canvas[] arrcanvas = new Canvas[colorsNumbers.length];
     private Button jb1, jb2;
     private int mbutton;
 
@@ -26,12 +26,12 @@ public class ColorPanel extends Panel {
         super();
         FocusListener fl = new FListener();
         setLayout(null);
-        setPanleLook();
+        setPanelLook();
         int y = 66;
         int x = 6;
-        Color[] colors = new Color[colorsnambers.length];
+        Color[] colors = new Color[colorsNumbers.length];
         int i;
-        for (i = 0; i < colors.length; i++) colors[i] = new Color(colorsnambers[i]);
+        for (i = 0; i < colors.length; i++) colors[i] = new Color(colorsNumbers[i]);
         for (i = 0; i < arrcanvas.length; i++) {
             arrcanvas[i] = new Canvas();
             arrcanvas[i].setBounds(x, y + (i * 24), 20, 20);
@@ -42,7 +42,7 @@ public class ColorPanel extends Panel {
 
     }
 
-    private void setPanleLook() {
+    private void setPanelLook() {
         JPanel pa;
         pa = new JPanel();
         pa.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
